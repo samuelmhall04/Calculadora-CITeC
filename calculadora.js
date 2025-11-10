@@ -17,7 +17,7 @@ const equations = {
                 return 'Erro: Os valores devem ser positivos e maiores que zero.';
             }
 
-            const massaB = volume / (fator * 1.776);
+            const massaB = volume / (fator * 1.796);
             const massaA = massaB * 1.11;
             const massaAgua = massaB * 0.04;
 
@@ -174,4 +174,5 @@ document.addEventListener('DOMContentLoaded', () => {
     equationSelect.addEventListener('change', updateInputs);
     calcForm.addEventListener('submit', handleSubmit);
     resetButton.addEventListener('click', handleReset);
+
 })
