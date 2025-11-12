@@ -50,6 +50,33 @@ const equations = {
             return `Ordem de adição dos componentes:\nComponente B (Poliol): ${massaB.toFixed(2)}g\nÁgua: ${massaAgua.toFixed(2)}g\nComponente A (Isocianato): ${massaA.toFixed(2)}g`;
         },
     },
+
+    espumaSamuelina: {
+        name: 'Espuma Samuelina',
+        variables: ['volume', 'fator'],
+        labels: {
+            volume: 'Volume do Molde',
+            fator: 'Fator de Expansão'
+        },
+        calculate: (inputs) => {
+            const volume = parseFloat(inputs.volume);
+            const fator = parseFloat(inputs.fator);
+
+            if (isNaN(volume) || isNaN(fator)) {
+                return 'Erro: Volume e Fator de Expansão devem ser números.';
+            }
+            if (volume <= 0 || fator <= 0) {
+                return 'Erro: Os valores devem ser positivos e maiores que zero.';
+            }
+
+            const volumeLiquido = (volume/fator) * 1.2;
+            const massaB = volumeLiquido / 1.8639;
+            const massaA = massaB * 1.11;
+            const massaAgua = massaA * 0.04;
+
+            return `Ordem de adição dos componentes:\nComponente B (Poliol): ${massaB.toFixed(2)}g\nÁgua: ${massaAgua.toFixed(2)}g\nComponente A (Isocianato): ${massaA.toFixed(2)}g`;
+        },
+    },
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -176,3 +203,4 @@ document.addEventListener('DOMContentLoaded', () => {
     resetButton.addEventListener('click', handleReset);
 
 })
+
